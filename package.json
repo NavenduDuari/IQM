@@ -1,0 +1,12 @@
+{
+  "name": "IQM",
+  "version": "1.0.0",
+  "description": "IQM is the only media buying and audience intelligence platform designed specifically for political action.",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "repository": "git@github.com:NavenduDuari/IQM.git",
+  "author": "Navendu Duari <navendu.mcs19.du@gmail.com>",
+  "license": "MIT"
+}
