@@ -1,6 +1,6 @@
 ### IQM Assessment
 
-## [How](How) to run
+## How to run
 
 From project root, run
 ```bash
@@ -11,7 +11,7 @@ yarn start
 
 Then go to the following route
 ```text
-http://localhost:3000/posts
+http://localhost:3000/questions
 ```
 
 ## TODO
@@ -34,14 +34,6 @@ It's a good practice to keep all the client code in monorepo for a large enough 
 The project is build with yarn workspace. The implementation of the project is inside `package/client`. 
 
 If a new package is required, all we need to do is create a new directory `package/package_name` and run yarn from the root. Example of a new package could be a library which is required in the main module. 
-
-### Typescript
-
-Typescript build system is created such a way so that incremental compilation is supported. 
-
-The compiler options are inherited from project root from `tsconfig.base.json`. If a new module is added we can inherit the base config. This would create a single config for compilation.
-
-Also when we build the project, TypeScript only builds the packageswhich have been changed not the complete packages.
 
 ### Component and Container
 

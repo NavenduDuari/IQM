@@ -3,7 +3,6 @@
  *
  * This is the entry point of the react code.
  *
- * TODO[@Nav] write more about <Provide store={store}>
  */
 
 import React from 'react';
@@ -23,8 +22,6 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-
-// TODO figure out
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
