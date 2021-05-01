@@ -10,13 +10,35 @@
  * of the continer clear during dev.
  */
 
-import { Action } from '../../types';
+import { Action, IsQuestionLoading } from '../../types';
 import { ActionTypes, StoreStateI } from './types';
 
-export const INITIAL_STATE: StoreStateI = {};
+export const INITIAL_STATE: StoreStateI = {
+  questions: [],
+  isLoading: IsQuestionLoading.NotLoading,
+};
 
 const appReducer = (state = INITIAL_STATE, action: Action<ActionTypes>) => {
   switch (action.type) {
+    case ActionTypes.ON_RECEIVE_QUESTIONS:
+      return {
+        ...state,
+        questions: [...state.questions, ...action.payload?.questions],
+        isLoading: IsQuestionLoading.NotLoading,
+      };
+
+    case ActionTypes.CLEAR_QUESTIONS:
+      return {
+        ...state,
+        questions: [],
+      };
+
+    case ActionTypes.CHANGE_IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload?.isLoading,
+      };
+
     default:
       return state;
   }

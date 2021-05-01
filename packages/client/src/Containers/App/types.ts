@@ -5,20 +5,31 @@
  * We try not to use any as much as possible.
  */
 
+import { QuestionI, IsQuestionLoading } from '../../types';
+
 /*
  * Actions which is dispatched by the rendering component and captured by saga / reducer
  */
 export enum ActionTypes {
-  TEST = 'test',
+  GET_QUESTIONS = 'get-questions',
+  ON_RECEIVE_QUESTIONS = 'on-receive-questions',
+  CLEAR_QUESTIONS = 'clear-questions',
+  CHANGE_IS_LOADING = 'change-is-loading',
 }
 
 /*
  * Types of the part of the redux state which would be available as a prop to the rendering
  * component
  */
-export interface MapStateToPropsI {}
+export interface MapStateToPropsI {
+  questions: QuestionI[];
+  isLoading: IsQuestionLoading;
+}
 
-export interface MapDispatchToPropsI {}
+export interface MapDispatchToPropsI {
+  getQuestions: (page: number) => void;
+  clearQuestions: () => void;
+}
 
 /*
  * Type of the own props of the component which is passed by the parent component which is
@@ -34,4 +45,7 @@ export type PropsI = MapStateToPropsI & MapDispatchToPropsI & ComponentPropsI;
  */
 export interface ComponentStateI {}
 
-export interface StoreStateI {}
+export interface StoreStateI {
+  questions: QuestionI[];
+  isLoading: IsQuestionLoading;
+}

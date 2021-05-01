@@ -17,3 +17,31 @@ export interface Action<T> {
   type: T;
   payload?: Record<string, any>;
 }
+
+interface OwnerI {
+  user_id: string;
+  display_name: string;
+}
+
+export interface QuestionI {
+  question_id: number;
+  title: string;
+  body: string;
+  link: string;
+  owner: OwnerI;
+  creation_date: number;
+}
+
+/*
+ * TODO[@Nav] Describe the values of this enum
+ */
+export enum IsQuestionLoading {
+  Loading = 'loading',
+  NotLoading = 'notLoading',
+  End = 'end',
+}
+
+/*
+ * No of questions in every page
+ */
+export const PAGE_SIZE = 10;

@@ -17,17 +17,24 @@ import {
   MapDispatchToPropsI,
   ActionTypes,
 } from './types';
-import Post from '../../Components/Post/index';
+import Questions from '../../Components/Questions/index';
 import { Action } from '../../types';
+import { getQuestionsAction, clearQuestionsAction } from './action';
 
 const mapStateToProps = (globalState: GlobalStateI): MapStateToPropsI => {
   const state = globalState.appReducer;
-  return {};
+  return {
+    questions: state.questions,
+    isLoading: state.isLoading,
+  };
 };
 
 const mapDispatchToProps = (
   dispatch: (action: Action<ActionTypes>) => void
-): MapDispatchToPropsI => ({});
+): MapDispatchToPropsI => ({
+  getQuestions: (page: number) => dispatch(getQuestionsAction(page)),
+  clearQuestions: () => dispatch(clearQuestionsAction()),
+});
 
 class App extends React.Component<PropsI, ComponentStateI> {
   componentDidMount() {}
@@ -36,7 +43,17 @@ class App extends React.Component<PropsI, ComponentStateI> {
     return (
       <Router>
         <Switch>
-          <Route path="/posts" render={() => <Post />} />
+          <Route
+            path="/questions"
+            render={() => (
+              <Questions
+                questions={this.props.questions}
+                isLoading={this.props.isLoading}
+                getQuestions={this.props.getQuestions}
+                clearQuestions={this.props.clearQuestions}
+              />
+            )}
+          />
         </Switch>
       </Router>
     );

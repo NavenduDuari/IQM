@@ -1,0 +1,130 @@
+.questions-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+    margin: 20px;
+    height: calc(100% - 40px);
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: #eee;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: black;
+    }
+
+    .unit-question {
+        min-height: 75px;
+        width: 450px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 10px 20px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        margin: 10px;
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: 0 0 4px 0 #d2d9e5;
+            transition: all 0.2s;
+        }
+
+
+        .title {
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .owner-n-date {
+            display: flex;
+
+            .owner {
+                span {
+                    margin-right: 10px;
+                }
+            }
+
+            .creation-date {
+                margin-left: 50px;
+
+                span {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
+
+.modal-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(1,1,1,0.5);
+    cursor: pointer;
+
+    .modal-body {
+        cursor: default;
+        background-color: #fff;
+        width: 70%;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 20px;
+
+
+        .title {
+            font-weight: 900;
+        }
+
+        .body {
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin: 10px 0px;
+            max-height: 465px;
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                width: 4px;
+                height: 4px;
+            }
+            &::-webkit-scrollbar-track {
+                background-color: #eee;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: black;
+            }
+        }
+
+        .link {
+            text-decoration: none;
+
+            span {
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid rgba(0,0,0,0.5);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 20px 0px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

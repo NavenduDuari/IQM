@@ -15,10 +15,33 @@
  * - error handling
  * should be done from a central lib (namely RequestManager)
  */
-import { takeEvery } from 'redux-saga/effects';
+
+import axios, { AxiosResponse } from 'axios';
+import { takeEvery, put, call } from 'redux-saga/effects';
+import { ActionTypes } from './types';
+import { Action, IsQuestionLoading, PAGE_SIZE } from '../../types';
+import { changeIsLoadingAction, onReceiveQuestionsAction } from './action';
+
+function getQuestions() {
+  return function* (action: Action<ActionTypes>) {
+    try {
+      yield put(changeIsLoadingAction(IsQuestionLoading.Loading));
+      const page = action.payload?.page;
+      const url = `https://api.stackexchange.com/2.2/questions?page=${page}&pagesize=${PAGE_SIZE}&site=stackoverflow&filter=withbody`;
+      const response: AxiosResponse = yield call(axios.get, url);
+      const questions = response.data.items;
+      const hasMore = response.data.has_more;
+      if (response.status !== 200 || !questions.length || !hasMore) {
+        throw new Error('Service request failed');
+      }
+      yield put(onReceiveQuestionsAction(questions));
+    } catch (err) {
+      console.error(err);
+      yield put(changeIsLoadingAction(IsQuestionLoading.End));
+    }
+  };
+}
 
 export default function* appSaga() {
-  yield takeEvery('', function* () {
-    console.log('test');
-  });
+  yield takeEvery(ActionTypes.GET_QUESTIONS, getQuestions());
 }

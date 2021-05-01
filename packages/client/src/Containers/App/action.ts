@@ -5,9 +5,34 @@
  */
 
 import { ActionTypes } from './types';
-import { Action } from '../../types';
+import { Action, IsQuestionLoading, QuestionI } from '../../types';
 
-export const testAction = (): Action<ActionTypes> => ({
-  type: ActionTypes.TEST,
+export const getQuestionsAction = (page: number): Action<ActionTypes> => ({
+  type: ActionTypes.GET_QUESTIONS,
+  payload: {
+    page,
+  },
+});
+
+export const onReceiveQuestionsAction = (
+  questions: QuestionI[]
+): Action<ActionTypes> => ({
+  type: ActionTypes.ON_RECEIVE_QUESTIONS,
+  payload: {
+    questions,
+  },
+});
+
+export const clearQuestionsAction = (): Action<ActionTypes> => ({
+  type: ActionTypes.CLEAR_QUESTIONS,
   payload: {},
+});
+
+export const changeIsLoadingAction = (
+  isLoading: IsQuestionLoading
+): Action<ActionTypes> => ({
+  type: ActionTypes.CHANGE_IS_LOADING,
+  payload: {
+    isLoading,
+  },
 });
